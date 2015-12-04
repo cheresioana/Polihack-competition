@@ -45,11 +45,19 @@ namespace Polihack
             pre_path[4] = obj_name;
             string path = Path.Combine(pre_path);
             if (data_type == Constants.DataType.text)
+            {
                 File.WriteAllText(path, data as string);
+                pre_path[4] = "info.csv";
+                string csv_line = obj_name + ";" + data_type.ToString() + Environment.NewLine;
+                File.AppendAllText(Path.Combine(pre_path), csv_line);
+            }
             else if (data_type == Constants.DataType.image)
             {
                 Image temp = data as Image;
                 temp.Save(path);
+                pre_path[4] = "info.csv";
+                string csv_line = obj_name + ";" + data_type.ToString() + Environment.NewLine;
+                File.AppendAllText(Path.Combine(pre_path), csv_line);
             }
 
 
