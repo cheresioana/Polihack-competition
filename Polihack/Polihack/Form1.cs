@@ -18,7 +18,7 @@ namespace Polihack
 
         public void test()
         {
-            DataManager manager_test = new DataManager(@"C:\Users\Rares\Desktop\store");
+            DataManager manager_test = new DataManager(@"C:\Users\Rares\Desktop\store", Constants.MainTypes.web);
             //MessageBox.Show(manager_test.error_code.ToString());
             //MessageBox.Show(manager_test.entry_created("TEST").ToString());
         }

@@ -5,14 +5,28 @@ using System.Text;
 
 namespace Polihack
 {
-    class Constants
+    public class Constants
     {
-        public static enum WebTypes
+        //the enum names are also used as strings to build the path to the folders
+        public enum DataType
         {
-            Video,
-            Image,
+            image,
+            text
+        }
+
+        public enum SubTypes
+        {
+            Vid,
+            Img,
             Link,
             Text
+        }
+
+        public enum MainTypes
+        {
+            web
+            //text,
+            //contact
         }
     }
 }
