@@ -49,7 +49,16 @@ namespace Polihack
             base.OnFormClosing(e);
             Process[] proc = Process.GetProcessesByName("Key_grab");
             foreach (Process p in proc)
-                p.Kill();
+            {
+                try
+                {
+                    p.Kill();
+                }
+                catch
+                {
+                    MessageBox.Show("Error terminating helper process!");
+                }
+            }
         }
 
         public void test()
