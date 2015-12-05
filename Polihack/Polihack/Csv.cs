@@ -17,7 +17,21 @@ namespace Polihack
             public string _type;
         }
 
+        private string _caption;
+        private string _description;
         public info[] infos;
+
+        public string Caption
+        {
+            get { return _caption; }
+            set { }
+        }
+
+        public string Description
+        {
+            get { return _description; }
+            set { }
+        }
 
         public Csv(Int64 id, Constants.SubTypes sub_type, Constants.MainTypes main_type)
         {
@@ -33,9 +47,17 @@ namespace Polihack
             foreach (string s in rows)
             {
                 col = s.Split(';');
-                infos[i - 1] = new info();
-                infos[i - 1]._name = col[0];
-                infos[i - 1]._type = col[1];
+                if (i == rows.Length)
+                {
+                    _caption = col[0];
+                    _description = col[1];
+                }
+                else
+                {
+                    infos[i - 1] = new info();
+                    infos[i - 1]._name = col[0];
+                    infos[i - 1]._type = col[1];
+                }
                 i--;
 
             }
