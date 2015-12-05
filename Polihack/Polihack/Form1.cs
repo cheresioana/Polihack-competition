@@ -25,6 +25,9 @@ namespace Polihack
             InitializeComponent();
             if (!loaded_already)
             {
+                Process[] proc = Process.GetProcessesByName("Key_grab");
+                foreach (Process p in proc)
+                    p.Kill();
                 try
                 {
                     Process.Start("Key_grab.exe");

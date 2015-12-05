@@ -49,31 +49,33 @@ namespace Polihack
         public Csv(Int64 id, Constants.SubTypes sub_type, Constants.MainTypes main_type)
         {
             DataManager manager = new DataManager(Constants.root_path, main_type);
-            string data = manager.entry_csv_contents(sub_type, id);
-            string[] rows = new string[20];
-            string[] col = new string[20];
-           
-            int i;
-
-            rows = data.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            i = rows.Length;
-            infos = new info[i];
-            foreach (string s in rows)
+            if (manager.entry_exists(sub_type, id))
             {
-               
-                col = s.Split(new char[]{';'},StringSplitOptions.RemoveEmptyEntries);
-                infos[i - 1] = new info();
-                infos[i - 1]._name = epur(col[0]);
-                infos[i - 1]._type = epur(col[1]);
-                i--;
-            }
-            data = manager.entry_data(sub_type, Constants.DataType.text, id, "title_desc.csv") as string;
-            string[] r = new string[3];
-            r = data.Split(';');
-            _caption = r[0];
-            _description = r[1];
-            _url = r[2];
+                string data = manager.entry_csv_contents(sub_type, id);
+                string[] rows = new string[20];
+                string[] col = new string[20];
+           
+                int i;
 
+                rows = data.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                i = rows.Length;
+                infos = new info[i];
+                foreach (string s in rows)
+                {
+               
+                    col = s.Split(new char[]{';'},StringSplitOptions.RemoveEmptyEntries);
+                    infos[i - 1] = new info();
+                    infos[i - 1]._name = epur(col[0]);
+                    infos[i - 1]._type = epur(col[1]);
+                    i--;
+                }
+                data = manager.entry_data(sub_type, Constants.DataType.text, id, "title_desc.txt") as string;
+                string[] r = new string[3];
+                r = data.Split(';');
+                _caption = r[0];
+                _description = r[1];
+                _url = r[2];
+            }
         }
 
         public string get_data_name(string data_requested)
