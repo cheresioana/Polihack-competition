@@ -12,6 +12,7 @@ namespace Polihack
     public partial class Image_Form : Form
     {
         public int id = 1;
+        public Constants.SubTypes sub_type = Constants.SubTypes.Img;
 
         public Image_Form()
         {
@@ -34,7 +35,7 @@ namespace Polihack
             {
                 if (data_manager.entry_exists(Constants.SubTypes.Img, start + i))
                 {
-                    pic[i] = new Picture(start + i, Constants.SubTypes.Img, Constants.MainTypes.web);
+                    pic[i] = new Picture(start + i, sub_type, Constants.MainTypes.web);
                     switch (i)
                     {
                         case 0:
@@ -204,6 +205,7 @@ namespace Polihack
         private void Image_Form_Load(object sender, EventArgs e)
         {
             Load_Image(id);
+            sub_type = Constants.SubTypes.Img;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
             if (!(data_manager.entry_exists(Constants.SubTypes.Img, id + 3)))
                 button2.Hide();
@@ -222,7 +224,7 @@ namespace Polihack
             // next
             id += 3;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
-            if (!(data_manager.entry_exists(Constants.SubTypes.Img, id + 3)))
+            if (!(data_manager.entry_exists(sub_type, id + 3)))
                 button2.Hide();
             else button2.Show();
             if (id == 1)
@@ -236,7 +238,7 @@ namespace Polihack
             //prev
             id -= 3;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
-            if (!(data_manager.entry_exists(Constants.SubTypes.Img, id + 3)))
+            if (!(data_manager.entry_exists(sub_type, id + 3)))
                 button2.Hide();
             else button2.Show();
             if (id == 1)
@@ -269,6 +271,37 @@ namespace Polihack
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (sub_type != Constants.SubTypes.Img)
+            {
+                sub_type = Constants.SubTypes.Img;
+                id = 1;
+                Load_Image(id);
+            }
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (sub_type != Constants.SubTypes.Vid)
+            {
+            sub_type = Constants.SubTypes.Vid;
+             id = 1;
+                Load_Image(id);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (sub_type != Constants.SubTypes.Link)
+            {
+                sub_type = Constants.SubTypes.Link;
+                id = 1;
+                Load_Image(id);
+            }
         }
         
     }

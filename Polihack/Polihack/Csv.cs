@@ -19,11 +19,18 @@ namespace Polihack
 
         private string _caption;
         private string _description;
+        private string _url;
         public info[] infos;
 
         public string Caption
         {
             get { return _caption; }
+            set { }
+        }
+
+        public string Url
+        {
+            get { return _url; }
             set { }
         }
 
@@ -33,44 +40,52 @@ namespace Polihack
             set { }
         }
 
+        public string epur(string myString)
+        {
+            myString = myString.Replace(System.Environment.NewLine, "replacement text");
+            return myString;
+        }
+
         public Csv(Int64 id, Constants.SubTypes sub_type, Constants.MainTypes main_type)
         {
             DataManager manager = new DataManager(Constants.root_path, main_type);
             string data = manager.entry_csv_contents(sub_type, id);
             string[] rows = new string[20];
             string[] col = new string[20];
+           
             int i;
-            
-            rows = data.Split('\n');
+
+            rows = data.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             i = rows.Length;
             infos = new info[i];
             foreach (string s in rows)
             {
-                col = s.Split(';');
-                if (i == rows.Length)
-                {
-                    _caption = col[0];
-                    _description = col[1];
-                }
-                else
-                {
-                    infos[i - 1] = new info();
-                    infos[i - 1]._name = col[0];
-                    infos[i - 1]._type = col[1];
-                }
+               
+                col = s.Split(new char[]{';'},StringSplitOptions.RemoveEmptyEntries);
+                infos[i - 1] = new info();
+                infos[i - 1]._name = epur(col[0]);
+                infos[i - 1]._type = epur(col[1]);
                 i--;
-
             }
+            data = manager.entry_data(sub_type, Constants.DataType.text, id, "title_desc.csv") as string;
+            string[] r = new string[3];
+            r = data.Split(';');
+            _caption = r[0];
+            _description = r[1];
+            _url = r[2];
+
         }
 
         public string get_data_name(string data_requested)
         {
-            foreach (info info in infos)
+            foreach (info str in infos)
             {
-                if (info._type == data_requested)
-                    return info._name;
+                if (str._type == data_requested)
+                {
+                    return (str._name);
+                }
             }
-            return null;
+            return infos[0]._name;
         }
         public Constants.DataType get_data_type(string data_requested)
         {

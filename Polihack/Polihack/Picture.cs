@@ -66,14 +66,17 @@ namespace Polihack
         public Picture(int id, Constants.SubTypes subtype,Constants.MainTypes main_type )
         {
             Csv csv = new Csv(id, subtype, main_type);
-            DataManager data_manager = new DataManager(@"C:\Users\ioana\Desktop\root", Constants.MainTypes.web);
+            DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
 
             _id = id;
             _subtype = subtype;
-            _name = csv.get_data_name(Constants.SubTypes.Img.ToString());
+            _name = csv.get_data_name("image");
+          
             _caption = csv.Caption;
             _description = csv.Description;
+            
             _img = data_manager.entry_data(_subtype, Constants.DataType.image, id, _name) as Image;
+           
         }
 
         
