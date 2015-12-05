@@ -151,7 +151,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(456, 10);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(56, 28);
             this.button3.TabIndex = 11;
@@ -162,7 +162,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(10, 10);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(56, 28);
             this.button4.TabIndex = 12;
@@ -176,7 +176,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 27);
             this.button5.TabIndex = 13;
-            this.button5.Text = "button5";
+            this.button5.Text = "Image";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -186,7 +186,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 27);
             this.button6.TabIndex = 14;
-            this.button6.Text = "button6";
+            this.button6.Text = "Video";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -196,7 +196,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 27);
             this.button7.TabIndex = 15;
-            this.button7.Text = "button7";
+            this.button7.Text = "Link";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
