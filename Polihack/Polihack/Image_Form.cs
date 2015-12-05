@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace Polihack
 {
@@ -14,11 +13,10 @@ namespace Polihack
     {
         public int id = 1;
         public Constants.SubTypes sub_type = Constants.SubTypes.Img;
-        public string[] urls;
+
         public Image_Form()
         {
             InitializeComponent();
-            urls = new string[3];
         }
        
 
@@ -57,7 +55,6 @@ namespace Polihack
                                 pictureBox1.Image = pic[i].Img;
                                 label1.Text = pic[i].Caption;
                                 label4.Text = pic[i].Description;
-                                urls[0] = pic[i].Url;
                                 break;
                             }
                         case 1:
@@ -68,7 +65,6 @@ namespace Polihack
                                 pictureBox2.Image = pic[i].Img;
                                 label2.Text = pic[i].Caption;
                                 label5.Text = pic[i].Description;
-                                urls[1] = pic[i].Url;
                                 break;
                             }
                         case 2:
@@ -79,7 +75,6 @@ namespace Polihack
                                 pictureBox3.Image = pic[i].Img;
                                 label3.Text = pic[i].Caption;
                                 label6.Text = pic[i].Description;
-                                urls[2] = pic[i].Url;
                                 break;
                             }
                                 #endregion
@@ -156,6 +151,24 @@ namespace Polihack
             btn.ForeColor = Color.Gray;
             btn.FlatAppearance.BorderColor = Color.Gray;
             btn.FlatAppearance.BorderSize = 1;
+            btn = button5;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33); ;
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button6;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33); ;
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button7;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33); ;
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 1;
             label1.ForeColor = Color.White;
             label2.ForeColor = Color.White;
             label3.ForeColor = Color.White;
@@ -206,6 +219,24 @@ namespace Polihack
             btn.FlatAppearance.BorderColor = Color.Aquamarine;
             btn.FlatAppearance.BorderSize = 1;
             btn = button4;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button5;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button6;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button7;
             btn.FlatStyle = FlatStyle.Flat;
             btn.BackColor = Color.White;
             btn.ForeColor = Color.Black;
@@ -274,9 +305,66 @@ namespace Polihack
         private void button3_Click(object sender, EventArgs e)
         {
             if (s == "light")
-                theme_dark();
+            {
+                if (button5.FlatAppearance.BorderColor == Color.White)
+                {
+                    theme_dark();
+                    button5.BackColor = Color.Black;
+                    button5.FlatStyle = FlatStyle.Flat;
+                    button5.BackColor = Color.Black;
+                    button5.ForeColor = Color.White;
+                    button5.FlatAppearance.BorderColor = Color.Black;
+                }
+                if (button6.FlatAppearance.BorderColor == Color.White)
+                {
+                    theme_dark();
+                    button6.BackColor = Color.Black;
+                    button6.FlatStyle = FlatStyle.Flat;
+                    button6.BackColor = Color.Black;
+                    button6.ForeColor = Color.White;
+                    button6.FlatAppearance.BorderColor = Color.Black;
+                }
+                if (button7.FlatAppearance.BorderColor == Color.White)
+                {
+                    theme_dark();
+                    button7.BackColor = Color.Black;
+                    button7.FlatStyle = FlatStyle.Flat;
+                    button7.BackColor = Color.Black;
+                    button7.ForeColor = Color.White;
+                    button7.FlatAppearance.BorderColor = Color.Black;
+                }
+            }
             else
-                theme_light();
+            {
+
+                if (button5.FlatAppearance.BorderColor == Color.Black)
+                {
+                    theme_light();
+                    button5.BackColor = Color.White;
+                    button5.FlatStyle = FlatStyle.Flat;
+                    button5.BackColor = Color.White;
+                    button5.ForeColor = Color.Black;
+                    button5.FlatAppearance.BorderColor = Color.White;
+                }
+                if (button6.FlatAppearance.BorderColor == Color.Black)
+                {
+                    theme_light();
+                    button6.BackColor = Color.White;
+                    button6.FlatStyle = FlatStyle.Flat;
+                    button6.BackColor = Color.White;
+                    button6.ForeColor = Color.Black;
+                    button6.FlatAppearance.BorderColor = Color.White;
+                }
+                if (button7.FlatAppearance.BorderColor == Color.Black)
+                {
+                    theme_light();
+                    button7.BackColor = Color.White;
+                    button7.FlatStyle = FlatStyle.Flat;
+                    button7.BackColor = Color.White;
+                    button7.ForeColor = Color.Black;
+                    button7.FlatAppearance.BorderColor = Color.White;
+                }
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -286,7 +374,37 @@ namespace Polihack
             bec.Show();
         }
 
-        
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+ 
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+
+            if (s == "light")
+                theme_light();
+            else
+                theme_dark();
+            if (button6.FlatAppearance.BorderColor == Color.Black)
+            {
+                button6.BackColor = Color.Black;
+                button6.FlatStyle = FlatStyle.Flat;
+                button6.BackColor = Color.Black;
+                button6.ForeColor = Color.White;
+                button6.FlatAppearance.BorderColor = Color.Black;
+            }
+            else
+            {
+                button6.BackColor = Color.White;
+                button6.FlatStyle = FlatStyle.Flat;
+                button6.BackColor = Color.White;
+                button6.ForeColor = Color.Black;
+                button6.FlatAppearance.BorderColor = Color.White;
+            }
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             if (sub_type != Constants.SubTypes.Img)
@@ -294,6 +412,27 @@ namespace Polihack
                 sub_type = Constants.SubTypes.Img;
                 id = 1;
                 Load_Image(id);
+            }
+            if (s == "light")
+                theme_light();
+            else
+                theme_dark();
+            if (button5.FlatAppearance.BorderColor == Color.Gray)
+            {
+                button5.BackColor = Color.Black;
+                button5.FlatStyle = FlatStyle.Flat;
+                button5.BackColor = Color.Black;
+                button5.ForeColor = Color.White;
+                button5.FlatAppearance.BorderColor = Color.Black;
+
+            }
+            else
+            {
+                button5.BackColor = Color.White;
+                button5.FlatStyle = FlatStyle.Flat;
+                button5.BackColor = Color.White;
+                button5.ForeColor = Color.Black;
+                button5.FlatAppearance.BorderColor = Color.White;
             }
 
         }
@@ -306,6 +445,27 @@ namespace Polihack
              id = 1;
                 Load_Image(id);
             }
+
+            if (s == "light")
+                theme_light();
+            else
+                theme_dark();
+            if (button6.FlatAppearance.BorderColor == Color.Gray)
+            {
+                button6.BackColor = Color.Black;
+                button6.FlatStyle = FlatStyle.Flat;
+                button6.BackColor = Color.Black;
+                button6.ForeColor = Color.White;
+                button6.FlatAppearance.BorderColor = Color.Black;
+            }
+            else
+            {
+                button6.BackColor = Color.White;
+                button6.FlatStyle = FlatStyle.Flat;
+                button6.BackColor = Color.White;
+                button6.ForeColor = Color.Black;
+                button6.FlatAppearance.BorderColor = Color.White;
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -316,21 +476,28 @@ namespace Polihack
                 id = 1;
                 Load_Image(id);
             }
-        }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            Process.Start("chrome.exe", urls[0]);
-        }
 
+            if (s == "light")
+                theme_light();
+            else
+                theme_dark();
+            if (button7.FlatAppearance.BorderColor == Color.Gray)
+            {
+                button7.BackColor = Color.Black;
+                button7.FlatStyle = FlatStyle.Flat;
+                button7.BackColor = Color.Black;
+                button7.ForeColor = Color.White;
+                button7.FlatAppearance.BorderColor = Color.Black;
+            }
+            else
+            {
+                button7.BackColor = Color.White;
+                button7.FlatStyle = FlatStyle.Flat;
+                button7.BackColor = Color.White;
+                button7.ForeColor = Color.Black;
+                button7.FlatAppearance.BorderColor = Color.White;
+            }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            Process.Start("chrome.exe", urls[1]);
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            Process.Start("chrome.exe", urls[2]);
         }
         
     }
