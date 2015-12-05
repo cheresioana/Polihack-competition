@@ -30,7 +30,6 @@ namespace Polihack
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            //MessageBox.Show(start.ToString());
             for (i = 0; i < 3 ; i++)
             {
                 if (data_manager.entry_exists(Constants.SubTypes.Img, start + i))
@@ -214,7 +213,7 @@ namespace Polihack
             else button1.Show();
             if (s == "dark")
                 theme_dark();
-            if (first == true)
+            else
                 theme_light();
         }
 
@@ -265,6 +264,11 @@ namespace Polihack
             this.Hide();
             Form1 bec = new Form1();
             bec.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
         
     }
