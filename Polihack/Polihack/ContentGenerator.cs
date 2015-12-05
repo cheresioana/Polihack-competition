@@ -11,11 +11,14 @@ namespace Polihack
 {
     class ContentGenerator
     {
-        /*public Image screenCap()
+        public Image screenCap()
         {
-            Rectangle workingRectangle = Screen.PrimaryScreen.WorkingArea;
-            Size screen_size = new Size(workingRectangle.Width - 10, workingRectangle.Height - 10);
-
-        }*/
+            var bmpScreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
+            var gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+            gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
+            //bmpScreenshot.Save("Screenshot.png", ImageFormat.Png);
+            Image ret_val = (Image)bmpScreenshot;
+            return (ret_val);
+        }
     }
 }

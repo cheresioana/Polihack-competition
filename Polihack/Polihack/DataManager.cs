@@ -13,6 +13,12 @@ namespace Polihack
         public int error_code;
         public Constants.MainTypes type;
 
+        public Int64 last_id(Constants.SubTypes sub_type)
+        {
+            string last_id = File.ReadAllText(Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "lastid.csv"));
+            return (Convert.ToInt64(last_id));
+        }
+
         public DataManager(string rootPath, Constants.MainTypes manager_type)
         {
             this.rootPath = rootPath;
@@ -29,7 +35,10 @@ namespace Polihack
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             if (!File.Exists(Path.Combine(path, "info.csv")))
-                File.Create(Path.Combine(path, "info.csv"));
+            {
+                var to_close = File.Create(Path.Combine(path, "info.csv"));
+                to_close.Close();
+            }
         }
 
         public void
