@@ -201,7 +201,7 @@ namespace Polihack
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Image_Form obj = new Image_Form();
+            Image_Form obj = new Image_Form(theme);
             obj.Show();
             this.Hide();
             
