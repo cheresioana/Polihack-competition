@@ -15,7 +15,13 @@ namespace Polihack
 
         public Int64 last_id_get(Constants.SubTypes sub_type)
         {
-            string last_id = File.ReadAllText(Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "lastid.csv"));
+            string path = Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "lastid.csv");
+            if (!File.Exists(path))
+            {
+                File.WriteAllText(path, "0");
+                return (0);
+            }
+            string last_id = File.ReadAllText(path);
             return (Convert.ToInt64(last_id));
         }
 
