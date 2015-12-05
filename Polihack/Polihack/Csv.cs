@@ -25,17 +25,18 @@ namespace Polihack
             string data = manager.entry_csv_contents(sub_type, id);
             string[] rows = new string[20];
             string[] col = new string[20];
-            int i = 0;
-
-            MessageBox.Show(data);
+            int i;
+            
             rows = data.Split('\n');
+            i = rows.Length;
+            infos = new info[i];
             foreach (string s in rows)
             {
                 col = s.Split(';');
-                infos[i] = new info();
-                infos[i]._name = col[0];
-                infos[i]._type = col[1];
-                i++;
+                infos[i - 1] = new info();
+                infos[i - 1]._name = col[0];
+                infos[i - 1]._type = col[1];
+                i--;
 
             }
         }

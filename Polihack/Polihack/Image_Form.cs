@@ -20,24 +20,28 @@ namespace Polihack
 
         private void Image_Form_Load(object sender, EventArgs e)
         {
-            Picture[] pic = new Picture[3];
+            Picture[] pic = new Picture[3 + 1];
 
-            for (id = 0; id < 3; id++)
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            for (id = 1; id < 3; id++)
             {
                 pic[id] = new Picture(id, Constants.SubTypes.Img, Constants.MainTypes.web);
                 switch (id % 3)
                 {
-                    case 0:
+                    case 1:
                         {
                             pictureBox1.Image = pic[id].Img;
                             break;
                         }
-                    case 1:
+                    case 2:
                         {
                             pictureBox2.Image = pic[id].Img;
                             break;
                         }
-                    case 2:
+                    case 0:
                         {
                             pictureBox3.Image = pic[id].Img;
                             break;
