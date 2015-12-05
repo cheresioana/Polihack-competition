@@ -8,7 +8,7 @@ namespace Polihack
     public class Constants
     {
         //the enum names are also used as strings to build the path to the folders
-        public static string root_path = @"C:\Users\Roxana Babenco\Desktop\Testing";
+        public static string root_path = @"C:\Users\Rares\Desktop\store";
         public enum DataType
         {
             image,

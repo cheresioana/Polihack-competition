@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Polihack
 {
@@ -18,10 +19,34 @@ namespace Polihack
         public static Thread IPC_thread;
         public delegate void StartOverlay();
         public StartOverlay overlay_delegate;
-
+        public static bool loaded_already = false;
         public Form1()
         {
             InitializeComponent();
+            if (!loaded_already)
+            {
+                try
+                {
+                    Process.Start("Key_grab.exe");
+                }
+                catch
+                {
+                    MessageBox.Show("Error opening key_catcher");
+                }
+                Form1.loaded_already = true;
+                overlay_delegate = new StartOverlay(startOverlay_method);
+                IPC_thread = new Thread(new ThreadStart(pick_call));//socket IPC thread
+                IPC_thread.IsBackground = true;
+                IPC_thread.Start();//socket IPC thread
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            Process[] proc = Process.GetProcessesByName("Key_grab");
+            foreach (Process p in proc)
+                p.Kill();
         }
 
         public void test()
@@ -54,7 +79,7 @@ namespace Polihack
                 string strData = Encoding.ASCII.GetString(formatted);
                 if (strData == "yada")//We got the call
                 {
-                    MessageBox.Show("Yada");
+                    //MessageBox.Show("Yada");
                     //InputOverlay overaly = new InputOverlay(Constants.SubTypes.Link);
                     this.Invoke(this.overlay_delegate);
                 }
@@ -69,16 +94,24 @@ namespace Polihack
         
         public void startOverlay_method()
         {
-            InputOverlay ov = new InputOverlay(Constants.SubTypes.Link);
-            ov.Show();
+            bool can_be_opened = true;
+            FormCollection forms = Application.OpenForms;//Checks if another overlay is opened or not
+            foreach (Form i in forms)
+            {
+                if (i.Text == "InputOverlay")
+                    can_be_opened = false;
+            }
+            if (can_be_opened)
+            {
+                InputOverlay ov = new InputOverlay();
+                ov.Show();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //test();
-            overlay_delegate = new StartOverlay(startOverlay_method);
-            IPC_thread = new Thread(new ThreadStart(pick_call));//socket IPC thread
-            IPC_thread.Start();//socket IPC thread
+            
 
             Button btn = new Button();
             btn = button1;
