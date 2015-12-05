@@ -34,6 +34,7 @@ namespace Polihack
                     type = Constants.SubTypes.Vid;
                 DataManager manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
                 Int64 lastid = manager.last_id_get(type);
+                manager.add_subType_csv(type, textBox1.Text, lastid + 1);//added this, pls work
                 manager.last_id_set(type, lastid + 1);
                 manager.create_entry(type, lastid + 1);
                 manager.add_entry_data(Constants.DataType.text, type, lastid + 1, "title_desc.txt", textBox1.Text + ";" + textBox2.Text + ";" + textBox3.Text);

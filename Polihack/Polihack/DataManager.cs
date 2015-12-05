@@ -13,6 +13,27 @@ namespace Polihack
         public int error_code;
         public Constants.MainTypes type;
 
+        public void add_subType_csv(Constants.SubTypes sub_type, string title, Int64 entry_id)
+        {
+            string content = entry_id.ToString();
+            string[] keywords = title.Split(' ');
+            foreach (string keyword in keywords)
+                content += ";" + keyword;
+            content += Environment.NewLine;
+            File.AppendAllText(Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "sub.csv"), content);
+        }
+
+        public string get_subType_csv(Constants.SubTypes sub_type)
+        {
+            string path = Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "sub.csv");
+            if (File.Exists(path))
+            {
+                string ret_val = File.ReadAllText(path);
+                return (ret_val);
+            }
+            return (null);
+        }
+
         public Int64 last_id_get(Constants.SubTypes sub_type)
         {
             string path = Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "lastid.csv");
