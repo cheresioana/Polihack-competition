@@ -31,15 +31,24 @@ namespace Polihack
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            if (!(data_manager.entry_exists(sub_type, id + 3)))
+                button2.Hide();
+            else button2.Show();
+            if (id == 1)
+                button1.Hide();
+            else button1.Show();
+
             for (i = 0; i < 3 ; i++)
             {
-                if (data_manager.entry_exists(Constants.SubTypes.Img, start + i))
+                if (data_manager.entry_exists(sub_type, start + i))
                 {
                     pic[i] = new Picture(start + i, sub_type, Constants.MainTypes.web);
                     switch (i)
                     {
+                        #region img
                         case 0:
                             {
+                               
                                 pictureBox1.Show();
                                 label1.Show();
                                 label4.Show();
@@ -68,10 +77,12 @@ namespace Polihack
                                 label6.Text = pic[i].Description;
                                 break;
                             }
+                                #endregion
                     }
                 }
                 else
                 {
+                    #region hide
                     switch (i)
                     {
                         case 0:
@@ -95,9 +106,11 @@ namespace Polihack
                                 label6.Hide();
                                 break;
                             }
+                    #endregion
                     }
                 }
             }
+           
         }
         public Image_Form(string theme)
         {
