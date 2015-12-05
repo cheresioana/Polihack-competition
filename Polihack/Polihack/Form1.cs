@@ -11,7 +11,7 @@ namespace Polihack
 {
     public partial class Form1 : Form
     {
-        public bool ok = true;
+        public string theme = "dark";
         public Form1()
         {
             InitializeComponent();
@@ -52,6 +52,12 @@ namespace Polihack
             btn.ForeColor = Color.Black;
             btn.FlatAppearance.BorderColor = Color.Aquamarine;
             btn.FlatAppearance.BorderSize = 1;
+            btn = button3;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 1;
 
         }
         public void theme_dark()
@@ -71,19 +77,25 @@ namespace Polihack
             btn.ForeColor = Color.Gray;
             btn.FlatAppearance.BorderColor = Color.Gray;
             btn.FlatAppearance.BorderSize = 1;
+            btn = button3;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33); ;
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 1;
 
         }
         public void doit()
         {
-            if (ok == true)
+            if (theme == "dark")
             {
-                ok = false;
+                theme = "light";
                 theme_light();
             }
             else
             {
                 theme_dark();
-                ok = true;
+                theme = "dark";
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -97,6 +109,17 @@ namespace Polihack
             obj.Show();
             this.Hide();
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Diary obj = new Diary(theme);
+            obj.Show();
+            this.Hide();
+        }
+        private void Diary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
