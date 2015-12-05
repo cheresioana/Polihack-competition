@@ -12,7 +12,8 @@ namespace Polihack
         public enum DataType
         {
             image,
-            text
+            text,
+            link
         }
 
         public enum SubTypes

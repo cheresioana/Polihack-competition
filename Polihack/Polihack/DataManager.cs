@@ -32,7 +32,7 @@ namespace Polihack
                 File.Create(Path.Combine(path, "info.csv"));
         }
 
-        public void 
+        public void
             add_entry_data(Constants.DataType data_type, Constants.SubTypes sub_type,
             Int64 ent_id, string obj_name, object data)
         {
@@ -59,8 +59,12 @@ namespace Polihack
                 string csv_line = obj_name + ";" + data_type.ToString() + Environment.NewLine;
                 File.AppendAllText(Path.Combine(pre_path), csv_line);
             }
-
-
+            else if (data_type == Constants.DataType.link)
+            {
+                File.WriteAllText(path, data as string);
+                pre_path[4] = "info.csv";
+                string csv_line = obj_name + ";" + data_type.ToString() + Environment.NewLine;
+            }
         }
 
         public bool entry_exists(Constants.SubTypes entry_type, Int64 entry_ID)
