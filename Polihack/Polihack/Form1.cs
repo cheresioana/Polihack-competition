@@ -164,8 +164,8 @@ namespace Polihack
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //Diary obj = new Diary(theme);
-            //obj.Show();
+            Diary obj = new Diary(theme);
+            obj.Show();
             this.Hide();
         }
         private void Diary_FormClosing(object sender, FormClosingEventArgs e)

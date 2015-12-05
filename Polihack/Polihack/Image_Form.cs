@@ -17,6 +17,7 @@ namespace Polihack
         {
             InitializeComponent();
         }
+       
 
         public void Load_Image(int start)
         {
@@ -98,6 +99,108 @@ namespace Polihack
                 }
             }
         }
+        public Image_Form(string theme)
+        {
+            InitializeComponent();
+            s = theme;
+        }
+        public bool first = true;
+        public void theme_dark()
+        {
+            // s = label2.Text;
+            // if ((s == "light")|| ((first == true) && (s == "dark")))
+            // {
+            s = "dark";
+           Image_Form dark = new Image_Form();
+            Button btn = new Button();
+            this.BackColor = System.Drawing.Color.Black;
+            btn = button1;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33);
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 2;
+            btn = button2;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33); ;
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button3;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33); ;
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button4;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(33, 33, 33); ;
+            btn.ForeColor = Color.Gray;
+            btn.FlatAppearance.BorderColor = Color.Gray;
+            btn.FlatAppearance.BorderSize = 1;
+            label1.ForeColor = Color.White;
+            label2.ForeColor = Color.White;
+            label3.ForeColor = Color.White;
+            label4.ForeColor = Color.White;
+            label5.ForeColor = Color.White;
+            label6.ForeColor = Color.White;
+            pictureBox2.BackColor = Color.FromArgb(33, 33, 33);
+            pictureBox1.BackColor = Color.FromArgb(33, 33, 33);
+            first = false;
+            // label2.Text = s;
+            // label2.ForeColor = textBox1.BackColor;
+            //  }
+
+        }
+        public void theme_light()
+        {
+            // s = label2.Text;
+            // if ((s == "dark")|| ((first == true) && (s == "light")))
+            //{
+            s = "light";
+            Image_Form dark = new Image_Form();
+            Button btn = new Button();
+            this.BackColor = System.Drawing.Color.White;
+            btn = button1;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 2;
+            btn = button2;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 1;
+            pictureBox1.BackColor = btn.BackColor;
+            pictureBox2.BackColor = pictureBox1.BackColor;
+            label1.ForeColor = Color.Black;
+            label2.ForeColor = Color.Black;
+            label3.ForeColor = Color.Black;
+            label4.ForeColor = Color.Black;
+            label5.ForeColor = Color.Black;
+            label6.ForeColor = Color.Black;
+            btn = button3;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 1;
+            btn = button4;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.Aquamarine;
+            btn.FlatAppearance.BorderSize = 1;
+
+            //label2.Text = s;
+            //label2.ForeColor = textBox1.BackColor;
+            first = false;
+            // }
+
+        }
+        public string s;
 
         private void Image_Form_Load(object sender, EventArgs e)
         {
@@ -109,6 +212,10 @@ namespace Polihack
             if (id == 1)
                 button1.Hide();
             else button1.Show();
+            if (s == "dark")
+                theme_dark();
+            if (first == true)
+                theme_light();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -139,5 +246,26 @@ namespace Polihack
             Load_Image(id);
            
         }
+
+        private void Image_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (s == "light")
+                theme_dark();
+            else
+                theme_light();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 bec = new Form1();
+            bec.Show();
+        }
+        
     }
 }
