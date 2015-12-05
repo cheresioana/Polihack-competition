@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-
+using System.Windows.Forms;
 
 namespace Polihack
 {
@@ -23,10 +23,11 @@ namespace Polihack
         {
             DataManager manager = new DataManager(Constants.root_path, main_type);
             string data = manager.entry_csv_contents(sub_type, id);
-            string[] rows;
-            string[] col;
+            string[] rows = new string[20];
+            string[] col = new string[20];
             int i = 0;
 
+            MessageBox.Show(data);
             rows = data.Split('\n');
             foreach (string s in rows)
             {
@@ -48,14 +49,22 @@ namespace Polihack
             }
             return null;
         }
-        public string get_data_type(string data_requested)
+        public Constants.DataType get_data_type(string data_requested)
         {
+
             foreach (info info in infos)
             {
                 if (info._type == data_requested)
-                    return info._type;
+                {
+                    if (data_requested == "Img")
+                        return (Constants.DataType.image);
+                    if (data_requested == "Text")
+                        return (Constants.DataType.text);
+                    if (data_requested == "Link")
+                        return (Constants.DataType.image);
+                }
             }
-            return null;
+            return Constants.DataType.image;
         }
     }
 }
