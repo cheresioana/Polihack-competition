@@ -23,6 +23,46 @@ namespace Polihack
             this.type = manager_type;
         }
 
+        public void create_entry(Constants.SubTypes sub_type, Int64 ent_ID)
+        {
+            string path = Path.Combine(rootPath, type.ToString(), sub_type.ToString(), ent_ID.ToString());
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            if (!File.Exists(Path.Combine(path, "info.csv")))
+                File.Create(Path.Combine(path, "info.csv"));
+        }
+
+        public void 
+            add_entry_data(Constants.DataType data_type, Constants.SubTypes sub_type,
+            Int64 ent_id, string obj_name, object data)
+        {
+            create_entry(sub_type, ent_id);
+            string[] pre_path = new string[5];
+            pre_path[0] = rootPath;
+            pre_path[1] = type.ToString();
+            pre_path[2] = sub_type.ToString();
+            pre_path[3] = ent_id.ToString();
+            pre_path[4] = obj_name;
+            string path = Path.Combine(pre_path);
+            if (data_type == Constants.DataType.text)
+            {
+                File.WriteAllText(path, data as string);
+                pre_path[4] = "info.csv";
+                string csv_line = obj_name + ";" + data_type.ToString() + Environment.NewLine;
+                File.AppendAllText(Path.Combine(pre_path), csv_line);
+            }
+            else if (data_type == Constants.DataType.image)
+            {
+                Image temp = data as Image;
+                temp.Save(path);
+                pre_path[4] = "info.csv";
+                string csv_line = obj_name + ";" + data_type.ToString() + Environment.NewLine;
+                File.AppendAllText(Path.Combine(pre_path), csv_line);
+            }
+
+
+        }
+
         public bool entry_exists(Constants.SubTypes entry_type, Int64 entry_ID)
         {
             return (
