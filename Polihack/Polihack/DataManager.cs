@@ -13,10 +13,16 @@ namespace Polihack
         public int error_code;
         public Constants.MainTypes type;
 
-        public Int64 last_id(Constants.SubTypes sub_type)
+        public Int64 last_id_get(Constants.SubTypes sub_type)
         {
             string last_id = File.ReadAllText(Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "lastid.csv"));
             return (Convert.ToInt64(last_id));
+        }
+
+        public void last_id_set(Constants.SubTypes sub_type, Int64 new_id)
+        {
+            string path = Path.Combine(rootPath, type.ToString(), sub_type.ToString(), "lastid.csv");
+            File.WriteAllText(path, new_id.ToString());
         }
 
         public DataManager(string rootPath, Constants.MainTypes manager_type)
