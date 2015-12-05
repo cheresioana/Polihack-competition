@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Polihack
 {
@@ -13,10 +14,11 @@ namespace Polihack
     {
         public int id = 1;
         public Constants.SubTypes sub_type = Constants.SubTypes.Img;
-
+        public string[] urls;
         public Image_Form()
         {
             InitializeComponent();
+            urls = new string[3];
         }
        
 
@@ -55,6 +57,7 @@ namespace Polihack
                                 pictureBox1.Image = pic[i].Img;
                                 label1.Text = pic[i].Caption;
                                 label4.Text = pic[i].Description;
+                                urls[0] = pic[i].Url;
                                 break;
                             }
                         case 1:
@@ -65,6 +68,7 @@ namespace Polihack
                                 pictureBox2.Image = pic[i].Img;
                                 label2.Text = pic[i].Caption;
                                 label5.Text = pic[i].Description;
+                                urls[1] = pic[i].Url;
                                 break;
                             }
                         case 2:
@@ -75,6 +79,7 @@ namespace Polihack
                                 pictureBox3.Image = pic[i].Img;
                                 label3.Text = pic[i].Caption;
                                 label6.Text = pic[i].Description;
+                                urls[2] = pic[i].Url;
                                 break;
                             }
                                 #endregion
@@ -281,11 +286,7 @@ namespace Polihack
             bec.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void button5_Click(object sender, EventArgs e)
         {
             if (sub_type != Constants.SubTypes.Img)
@@ -315,6 +316,21 @@ namespace Polihack
                 id = 1;
                 Load_Image(id);
             }
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Process.Start("chrome.exe", urls[0]);
+        }
+
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Process.Start("chrome.exe", urls[1]);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Process.Start("chrome.exe", urls[2]);
         }
         
     }

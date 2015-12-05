@@ -74,6 +74,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(295, 139);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // label2
             // 
@@ -91,6 +92,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(295, 139);
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // label3
             // 

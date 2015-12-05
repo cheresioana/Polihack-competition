@@ -18,10 +18,17 @@ namespace Polihack
         private Image               _img;
         private string _caption;
         private string _description;
+        private string _url;
 
         public string Caption
         {
             get { return _caption; }
+            set { }
+        }
+
+        public string Url
+        {
+            get { return _url; }
             set { }
         }
 
@@ -69,11 +76,12 @@ namespace Polihack
             _id = id;
             _subtype = subtype;
             _name = csv.get_data_name("image");
-          
+            _url = csv.Url;
             _caption = csv.Caption;
             _description = csv.Description;
             
             _img = data_manager.entry_data(_subtype, Constants.DataType.image, id, _name) as Image;
+
            
         }
 
