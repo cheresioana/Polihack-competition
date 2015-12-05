@@ -70,7 +70,7 @@ namespace Polihack
         public bool entry_exists(Constants.SubTypes entry_type, Int64 entry_ID)
         {
             return (
-                File.Exists(
+                Directory.Exists(
                 Path.Combine(rootPath, type.ToString(), entry_type.ToString(), entry_ID.ToString()
                 )));
         }
@@ -81,10 +81,9 @@ namespace Polihack
             {
                 string path = 
                     Path.Combine(rootPath, type.ToString(), entry_type.ToString(), entry_ID.ToString());
+                path = Path.Combine(path, "info.csv");
                 if (File.Exists(path))
-                {
                     return (File.ReadAllText(path));
-                }
                 else
                     return (null);
             }
