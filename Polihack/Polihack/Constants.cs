@@ -26,8 +26,8 @@ namespace Polihack
 
         public enum MainTypes
         {
-            web
-            //text,
+            web,
+            text,
             //contact
         }
     }

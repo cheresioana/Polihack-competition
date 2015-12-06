@@ -16,3 +16,14 @@ C:\Users\Roxana Babenco\Desktop\polihack\Polihack\Polihack\bin\Debug\Polihack.ex
 C:\Users\Roxana Babenco\Desktop\polihack\Polihack\Polihack\bin\Debug\Polihack.pdb
 C:\Users\Roxana Babenco\Desktop\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.Diary.resources
 C:\Users\Roxana Babenco\Desktop\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.InputOverlay.resources
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.exe
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.pdb
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.csprojResolveAssemblyReference.cache
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.Diary.resources
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.Form1.resources
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.Image_Form.resources
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.InputOverlay.resources
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.Properties.Resources.resources
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\obj\x86\Debug\Polihack.csproj.GenerateResource.Cache
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\bin\Debug\Polihack.exe
+C:\Users\Rares\Desktop\Presentation Copy\polihack\Polihack\Polihack\bin\Debug\Polihack.pdb

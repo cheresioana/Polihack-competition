@@ -115,7 +115,7 @@ namespace Polihack
             }
             if (can_be_opened)
             {
-                InputOverlay ov = new InputOverlay();
+                InputOverlay ov = new InputOverlay(this.theme);
                 ov.Show();
             }
         }
@@ -131,6 +131,7 @@ namespace Polihack
             btn.FlatAppearance.BorderColor = Color.Gray;
             btn.FlatAppearance.BorderSize = 2;
         }
+        #region
         public void theme_light()
         {
             Form1 dark = new Form1();
@@ -156,6 +157,7 @@ namespace Polihack
             btn.FlatAppearance.BorderSize = 1;
 
         }
+
         public void theme_dark()
         {
             Form1 dark = new Form1();
@@ -181,6 +183,7 @@ namespace Polihack
             btn.FlatAppearance.BorderSize = 1;
 
         }
+        #endregion
         public void doit()
         {
             if (theme == "dark")

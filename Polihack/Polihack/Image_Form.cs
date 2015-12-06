@@ -128,6 +128,7 @@ namespace Polihack
 
         }
         public bool first = true;
+        #region
         public void theme_dark()
         {
             // s = label2.Text;
@@ -259,6 +260,7 @@ namespace Polihack
             // }
 
         }
+        #endregion
         public string s;
 
         private void Image_Form_Load(object sender, EventArgs e)
@@ -323,7 +325,7 @@ namespace Polihack
         {
             Application.Exit();
         }
-
+        #region
         private void button3_Click(object sender, EventArgs e)
         {
             if (s == "light")
@@ -388,7 +390,7 @@ namespace Polihack
                 }
             }
         }
-
+        #endregion
         private void button4_Click(object sender, EventArgs e)
         {
             this.Hide();
