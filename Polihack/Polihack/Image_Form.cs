@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Polihack
 {
@@ -13,10 +14,12 @@ namespace Polihack
     {
         public int id = 1;
         public Constants.SubTypes sub_type = Constants.SubTypes.Img;
+        public string[] urls;
 
         public Image_Form()
         {
             InitializeComponent();
+            urls = new string[3];
         }
        
 
@@ -26,7 +29,7 @@ namespace Polihack
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
             
             Picture[] pic = new Picture[4];
-
+            urls = new string[3];
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -55,6 +58,7 @@ namespace Polihack
                                 pictureBox1.Image = pic[i].Img;
                                 label1.Text = pic[i].Caption;
                                 label4.Text = pic[i].Description;
+                                urls[0] = pic[i].Url;
                                 break;
                             }
                         case 1:
@@ -65,6 +69,7 @@ namespace Polihack
                                 pictureBox2.Image = pic[i].Img;
                                 label2.Text = pic[i].Caption;
                                 label5.Text = pic[i].Description;
+                                urls[1] = pic[i].Url;
                                 break;
                             }
                         case 2:
@@ -75,6 +80,7 @@ namespace Polihack
                                 pictureBox3.Image = pic[i].Img;
                                 label3.Text = pic[i].Caption;
                                 label6.Text = pic[i].Description;
+                                urls[2] = pic[i].Url;
                                 break;
                             }
                                 #endregion
@@ -253,6 +259,7 @@ namespace Polihack
 
         private void Image_Form_Load(object sender, EventArgs e)
         {
+            
             Load_Image(id);
             sub_type = Constants.SubTypes.Img;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
@@ -266,6 +273,23 @@ namespace Polihack
                 theme_dark();
             else
                 theme_light();
+            if (button5.FlatAppearance.BorderColor == Color.Gray)
+            {
+                button5.BackColor = Color.Black;
+                button5.FlatStyle = FlatStyle.Flat;
+                button5.BackColor = Color.Black;
+                button5.ForeColor = Color.White;
+                button5.FlatAppearance.BorderColor = Color.Black;
+
+            }
+            else
+            {
+                button5.BackColor = Color.White;
+                button5.FlatStyle = FlatStyle.Flat;
+                button5.BackColor = Color.White;
+                button5.ForeColor = Color.Black;
+                button5.FlatAppearance.BorderColor = Color.White;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -373,12 +397,6 @@ namespace Polihack
             Form1 bec = new Form1();
             bec.Show();
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
- 
 
         private void button6_Click_1(object sender, EventArgs e)
         {
@@ -497,6 +515,26 @@ namespace Polihack
                 button7.ForeColor = Color.Black;
                 button7.FlatAppearance.BorderColor = Color.White;
             }
+
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Process.Start("chrome.exe", urls[0]);
+        }
+
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Process.Start("chrome.exe", urls[1]);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Process.Start("chrome.exe", urls[2]);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
 
         }
         
