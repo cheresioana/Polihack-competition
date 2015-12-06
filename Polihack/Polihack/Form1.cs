@@ -15,7 +15,7 @@ namespace Polihack
 {
     public partial class Form1 : Form
     {
-        public string theme = "dark";
+        public static string theme; = "dark";
         public static Thread IPC_thread;
         public delegate void StartOverlay();
         public StartOverlay overlay_delegate;
@@ -38,9 +38,9 @@ namespace Polihack
                 }
                 Form1.loaded_already = true;
                 overlay_delegate = new StartOverlay(startOverlay_method);
-                IPC_thread = new Thread(new ThreadStart(pick_call));//socket IPC thread
+                IPC_thread = new Thread(new ThreadStart(pick_call));
                 IPC_thread.IsBackground = true;
-                IPC_thread.Start();//socket IPC thread
+                IPC_thread.Start();
             }
         }
 
@@ -56,28 +56,21 @@ namespace Polihack
                 }
                 catch
                 {
-                    //MessageBox.Show("Error terminating helper process!");
                 }
             }
         }
 
         public void test()
         {
-            //DataManager manager_test = new DataManager(@"C:\Users\Rares\Desktop\store", Constants.MainTypes.web);
-            //string rez = manager_test.entry_data(Constants.SubTypes.Text, Constants.DataType.text, 1, "suka.txt") as string;
-            //MessageBox.Show(rez);
-            //MessageBox.Show(manager_test.error_code.ToString());
-            //MessageBox.Show(manager_test.entry_created("TEST").ToString());
-
         }
 
-        public void pick_call()//socket IPC code
+        public void pick_call()
         {
             byte[] buffer;
             Socket sck;
             sck = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             sck.Bind(new IPEndPoint(0, 1234));
-            while (true)//should close sck at some point :)
+            while (true)
             {
                 sck.Listen(100);
                 Socket accepted = sck.Accept();
@@ -91,23 +84,17 @@ namespace Polihack
                 string strData = Encoding.ASCII.GetString(formatted);
                 if (strData == "yada")//We got the call
                 {
-                    //MessageBox.Show("Yada");
-                    //InputOverlay overaly = new InputOverlay(Constants.SubTypes.Link);
                     this.Invoke(this.overlay_delegate);
                 }
-                //Console.Write(strData + "\r\n");
                 accepted.Close();
-                //if (strData == "STOP")
-                //    break;
 
             }
-            //sck.Close();
         }
         
         public void startOverlay_method()
         {
             bool can_be_opened = true;
-            FormCollection forms = Application.OpenForms;//Checks if another overlay is opened or not
+            FormCollection forms = Application.OpenForms;
             foreach (Form i in forms)
             {
                 if (i.Text == "InputOverlay")
@@ -115,7 +102,7 @@ namespace Polihack
             }
             if (can_be_opened)
             {
-                InputOverlay ov = new InputOverlay(this.theme);
+                InputOverlay ov = new InputOverlay(Form1.theme);
                 ov.Show();
             }
         }
@@ -219,6 +206,12 @@ namespace Polihack
         private void Diary_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            GoogleDriveManager manager = new GoogleDriveManager();
+            manager.backup_data();
         }
     }
 }
