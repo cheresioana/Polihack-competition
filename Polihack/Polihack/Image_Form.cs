@@ -124,6 +124,8 @@ namespace Polihack
         {
             InitializeComponent();
             s = theme;
+            button2.Select();
+
         }
         public bool first = true;
         public void theme_dark()
@@ -299,12 +301,6 @@ namespace Polihack
             // next
             id += 3;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
-           /* if (!(data_manager.entry_exists(sub_type, id + 3)))
-                button2.Hide();
-            else button2.Show();
-            if (id == 1)
-                button1.Hide();
-            else button1.Show();*/
             if (search_mode)
                 Load_Search(id);
             else
@@ -316,12 +312,6 @@ namespace Polihack
             //prev
             id -= 3;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
-            /*if (!(data_manager.entry_exists(sub_type, id + 3)))
-                button2.Hide();
-            else button2.Show();
-            if (id == 1)
-                button1.Hide();
-            else button1.Show();*/
             if (search_mode)
                 Load_Search(id);
             else
@@ -685,7 +675,17 @@ namespace Polihack
             else search_mode = true;
         }
 
-    
+        private void Image_Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button8_Click(sender, e);
+            if (e.KeyCode == Keys.D && button2.Visible == true)
+                button2_Click(sender, e);
+            if (e.KeyCode == Keys.A && button1.Visible == true)
+                button1_Click(sender, e);
+
+        }
+   
         
     }
 }

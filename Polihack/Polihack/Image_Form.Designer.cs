@@ -244,10 +244,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
+            this.KeyPreview = true;
             this.Name = "Image_Form";
             this.Text = "Image_Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Image_Form_FormClosing);
             this.Load += new System.EventHandler(this.Image_Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Image_Form_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
