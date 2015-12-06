@@ -56,7 +56,7 @@ namespace Polihack
                 }
                 catch
                 {
-                    MessageBox.Show("Error terminating helper process!");
+                    //MessageBox.Show("Error terminating helper process!");
                 }
             }
         }

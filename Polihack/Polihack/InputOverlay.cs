@@ -29,6 +29,7 @@ namespace Polihack
             type = Constants.SubTypes.Link;
             radioButton1.Checked = true;
             this.TopMost = true;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void button1_Click(object sender, EventArgs e)
