@@ -15,11 +15,13 @@ namespace Polihack
         public int id = 1;
         public Constants.SubTypes sub_type = Constants.SubTypes.Img;
         public string[] urls;
+        bool search_mode = false;
+        int[] searched_id;
 
         public Image_Form()
         {
             InitializeComponent();
-            urls = new string[3];
+            urls = new string[4];
         }
        
 
@@ -297,13 +299,16 @@ namespace Polihack
             // next
             id += 3;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
-            if (!(data_manager.entry_exists(sub_type, id + 3)))
+           /* if (!(data_manager.entry_exists(sub_type, id + 3)))
                 button2.Hide();
             else button2.Show();
             if (id == 1)
                 button1.Hide();
-            else button1.Show();
-            Load_Image(id);
+            else button1.Show();*/
+            if (search_mode)
+                Load_Search(id);
+            else
+                Load_Image(id);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -311,12 +316,15 @@ namespace Polihack
             //prev
             id -= 3;
             DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
-            if (!(data_manager.entry_exists(sub_type, id + 3)))
+            /*if (!(data_manager.entry_exists(sub_type, id + 3)))
                 button2.Hide();
             else button2.Show();
             if (id == 1)
                 button1.Hide();
-            else button1.Show();
+            else button1.Show();*/
+            if (search_mode)
+                Load_Search(id);
+            else
             Load_Image(id);
            
         }
@@ -521,7 +529,140 @@ namespace Polihack
         {
             Process.Start("chrome.exe", urls[0]);
         }
+        public void Load_Search(int index)
+        {
+            int i;
+            DataManager data_manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
+            
+            Picture[] pic = new Picture[4];
+            urls = new string[3];
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            if (!(data_manager.entry_exists(sub_type, searched_id[index + 3])))
+                button2.Hide();
+            else button2.Show();
+            if (index == 1)
+                button1.Hide();
+            else button1.Show();
+
+            for (i = 0; i < 3 ; i++)
+            {
+                if (data_manager.entry_exists(sub_type, searched_id[index + i]))
+                {
+                    pic[i] = new Picture(searched_id[index + i], sub_type, Constants.MainTypes.web);
+                    switch (i)
+                    {
+                        #region img
+                        case 0:
+                            {
+                               
+                                pictureBox1.Show();
+                                label1.Show();
+                                label4.Show();
+                                pictureBox1.Image = pic[i].Img;
+                                label1.Text = pic[i].Caption;
+                                label4.Text = pic[i].Description;
+                                urls[0] = pic[i].Url;
+                                break;
+                            }
+                        case 1:
+                            {
+                                pictureBox2.Show();
+                                label2.Show();
+                                label5.Show();
+                                pictureBox2.Image = pic[i].Img;
+                                label2.Text = pic[i].Caption;
+                                label5.Text = pic[i].Description;
+                                urls[1] = pic[i].Url;
+                                break;
+                            }
+                        case 2:
+                            {
+                                pictureBox3.Show();
+                                label3.Show();
+                                label6.Show();
+                                pictureBox3.Image = pic[i].Img;
+                                label3.Text = pic[i].Caption;
+                                label6.Text = pic[i].Description;
+                                urls[2] = pic[i].Url;
+                                break;
+                            }
+                                #endregion
+                    }
+                }
+                else
+                {
+                    #region hide
+                    switch (i)
+                    {
+                        case 0:
+                            {
+                                pictureBox1.Hide();
+                                label1.Hide();
+                                label4.Hide();
+                                break;
+                            }
+                        case 1:
+                            {
+                                pictureBox2.Hide();
+                                label2.Hide();
+                                label5.Hide();
+                                break;
+                            }
+                        case 2:
+                            {
+                                pictureBox3.Hide();
+                                label3.Hide();
+                                label6.Hide();
+                                break;
+                            }
+                    #endregion
+                    }
+                }
+            }
+        }
+        public void search(Constants.SubTypes sub_type, string[] searched__words)
+        {
+            int i = 0;
+            string data;
+            DataManager manager = new DataManager(Constants.root_path, Constants.MainTypes.web);
+            data = manager.get_subType_csv(sub_type) as string;
+
+            if (data == null)
+                MessageBox.Show("You have no files");
+            else
+            {
+                string[] array = data.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.None);
+                searched_id = new int[array.Length];
+                int index = 0;
+
+                foreach (string line in array)
+                {
+                    string[] words = line.Split(new char[] { ';' });
+
+                    foreach (string searched_word in searched__words)
+                        foreach (string word in words)
+                            if (searched_word == word)
+                            {
+                                searched_id[index] = Convert.ToInt16(words[0]);
+                                index++;
+                            }
+                }
+                id = 1;
+                Load_Search(id);
+            }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != null)
+            {
+                string[] searched_data = textBox1.Text.Split(new char[] { ' ' });
+                search_mode = true;
+                search(sub_type, searched_data);
+            }
+        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -533,10 +674,18 @@ namespace Polihack
             Process.Start("chrome.exe", urls[2]);
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                search_mode = false;
+                id = 1;
+                Load_Image(id);
+            }
+            else search_mode = true;
         }
+
+    
         
     }
 }
