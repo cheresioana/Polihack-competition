@@ -74,8 +74,15 @@ namespace Polihack
                 r = data.Split(';');
                 _caption = r[0];
                 _description = r[1];
-                _url = r[2];
+                _url = get_url(r[2]);
             }
+        }
+
+        public string get_url(string data)
+        {
+            if (data.StartsWith("https://") || data.StartsWith("http://"))
+                return data;
+            return "https://www.google.ro/search?q=" + data + "&oq=" + data;
         }
 
         public string get_data_name(string data_requested)
